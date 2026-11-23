@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>ECO Caminantes · Ecoturismo desde Cali</title>
+<meta name="description" content="Ríos, cascadas, montaña, expediciones y pasadías desde Cali con ECO Caminantes. Arma tu plan y reserva por WhatsApp.">
+<meta name="theme-color" content="#0f2a1c">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="img/icon-192.png">
+<link rel="apple-touch-icon" href="img/icon-192.png">
+<!-- Vista previa al compartir el enlace (fotos reales de @ecocaminantes) -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://eco-caminantes.netlify.app/">
+<meta property="og:title" content="ECO Caminantes · Ríos, cascadas y montaña desde Cali">
+<meta property="og:description" content="Pasadías y expediciones de ecoturismo. 259 mil seguidores y más de 1 millón de viajeros. Arma tu plan y reserva por WhatsApp.">
+<meta property="og:image" content="https://eco-caminantes.netlify.app/img/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://eco-caminantes.netlify.app/img/og.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--deep:#0f2a1c;--leaf:#3c9a3a;--lime:#9bd34a;--river:#1fa3a8;--sun:#ffc934;--cream:#f4f8ef;--ink:#13221a;--mut:#5b6d61}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:Inter,system-ui,sans-serif;background:var(--cream);color:var(--ink);line-height:1.55;overflow-x:hidden}
+img{display:block;max-width:100%}
+a{color:inherit}
+h1,h2,h3{font-family:"Archivo Black",Inter,sans-serif;font-weight:400;line-height:1.05;letter-spacing:-.01em}
+.wrap{max-width:1100px;margin:0 auto;padding:0 18px}
+section{padding:64px 0;scroll-margin-top:60px}
+.kick{display:inline-block;font:800 .72rem Inter;letter-spacing:.18em;text-transform:uppercase;color:var(--leaf);margin-bottom:10px}
+h2{font-size:clamp(1.9rem,6vw,3rem);margin-bottom:14px}
+.lead{color:var(--mut);max-width:640px;font-size:1.02rem}
+
+/* Barra superior */
+.top{position:fixed;inset:0 0 auto 0;z-index:60;display:flex;align-items:center;justify-content:space-between;padding:10px 14px;transition:.35s}
+.top.solid{background:rgba(15,42,28,.93);backdrop-filter:blur(8px);box-shadow:0 2px 18px rgba(0,0,0,.25)}
+.brand{display:flex;align-items:center;text-decoration:none}
+.brand img{height:40px;background:#fff;border-radius:10px;padding:3px 6px}
+.tb{display:flex;gap:6px}
+.chip{border:1px solid rgba(255,255,255,.6);background:rgba(0,0,0,.3);color:#fff;border-radius:999px;padding:8px 12px;font:700 .74rem Inter;cursor:pointer;letter-spacing:.05em;text-decoration:none}
+.chip:active{transform:scale(.95)}
+
+/* Portada */
+.hero{position:relative;height:100svh;min-height:600px;overflow:hidden;color:#fff;display:flex;align-items:flex-end;padding:0}
+.slide{position:absolute;inset:0;background-size:cover;background-position:center;opacity:0;transform:scale(1.12);transition:opacity 1.4s ease}
+.slide.on{opacity:1;animation:kb 9s ease-out forwards}
+@keyframes kb{from{transform:scale(1.18) translate(2%,1%)}to{transform:scale(1.02) translate(0,0)}}
+.hero:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.35) 0%,rgba(0,0,0,0) 30%,rgba(8,30,18,.55) 60%,rgba(8,30,18,.95) 100%)}
+.hin{position:relative;z-index:2;padding-bottom:100px;width:100%}
+.tag{display:inline-block;background:var(--sun);color:var(--deep);font:800 .72rem Inter;letter-spacing:.12em;text-transform:uppercase;padding:6px 12px;border-radius:6px;margin-bottom:14px}
+.hero h1{font-size:clamp(2.6rem,12vw,5.6rem);text-transform:uppercase}
+.hero h1 span{color:var(--lime)}
+.hero p{font-size:1.08rem;max-width:560px;margin:12px 0 20px;opacity:.95}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:0;border-radius:14px;padding:15px 20px;font:800 .95rem Inter;cursor:pointer;text-decoration:none;transition:transform .15s}
+.btn:active{transform:scale(.96)}
+.wa{background:#25d366;color:#05310f;box-shadow:0 10px 28px rgba(37,211,102,.35)}
+.ghost{background:rgba(255,255,255,.14);color:#fff;border:1px solid rgba(255,255,255,.5)}
+.row{display:flex;gap:10px;flex-wrap:wrap}
+.dots{position:absolute;z-index:3;right:18px;bottom:110px;display:flex;flex-direction:column;gap:8px}
+.dots i{width:8px;height:22px;border-radius:6px;background:rgba(255,255,255,.4);transition:.3s}
+.dots i.on{background:var(--sun);height:34px}
+
+/* Cinta */
+.ribbon{background:var(--deep);color:var(--lime);overflow:hidden;white-space:nowrap;padding:14px 0;font:800 1rem "Archivo Black",Inter;text-transform:uppercase;letter-spacing:.04em}
+.ribbon div{display:inline-block;animation:mq 28s linear infinite}
+.ribbon b{color:#fff;margin:0 22px;font-weight:400}
+@keyframes mq{to{transform:translateX(-50%)}}
+
+/* Cifras */
+.stats{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:26px}
+.st{background:#fff;border-radius:18px;padding:20px 16px;box-shadow:0 8px 24px rgba(15,42,28,.08);border-bottom:5px solid var(--leaf)}
+.st:nth-child(2){border-color:var(--river)}.st:nth-child(3){border-color:var(--sun)}.st:nth-child(4){border-color:var(--lime)}
+.st b{display:block;font:400 clamp(1.8rem,7vw,2.6rem) "Archivo Black";color:var(--deep)}
+.st span{color:var(--mut);font-size:.88rem;font-weight:600}
+@media(min-width:760px){.stats{grid-template-columns:repeat(4,1fr)}}
+
+/* Próxima salida */
+.next{background:linear-gradient(120deg,var(--deep),#185b3a 60%,var(--river));color:#fff;border-radius:24px;padding:26px 22px;margin-top:22px;position:relative;overflow:hidden}
+.next:before{content:"";position:absolute;right:-60px;top:-60px;width:220px;height:220px;border-radius:50%;background:rgba(155,211,74,.22);animation:pulse 4s ease-in-out infinite}
+@keyframes pulse{50%{transform:scale(1.25);opacity:.5}}
+.next h3{font-size:1.5rem;margin:6px 0}
+.cd{display:flex;gap:10px;margin:16px 0 4px}
+.cd div{background:rgba(255,255,255,.12);border-radius:12px;padding:10px 12px;min-width:66px;text-align:center}
+.cd b{display:block;font:400 1.7rem "Archivo Black"}
+.cd small{font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;opacity:.8}
+
+/* Rutas */
+.filters{display:flex;gap:8px;overflow-x:auto;padding:4px 0 14px;scrollbar-width:none}
+.filters::-webkit-scrollbar{display:none}
+.f{flex:none;border:2px solid var(--deep);background:#fff;color:var(--deep);border-radius:999px;padding:9px 16px;font:800 .8rem Inter;cursor:pointer}
+.f.on{background:var(--deep);color:var(--lime)}
+.routes{display:grid;gap:16px;grid-template-columns:1fr}
+@media(min-width:700px){.routes{grid-template-columns:1fr 1fr}}
+@media(min-width:1000px){.routes{grid-template-columns:1fr 1fr 1fr}}
+.rc{position:relative;border-radius:22px;overflow:hidden;min-height:290px;color:#fff;display:flex;flex-direction:column;justify-content:flex-end;padding:20px;box-shadow:0 14px 30px rgba(15,42,28,.18);cursor:pointer;transform:translateY(24px);opacity:0;transition:transform .6s,opacity .6s}
+.rc.vis{transform:none;opacity:1}
+.rc .bg{position:absolute;inset:0;background-size:cover;background-position:center;transition:transform 6s ease}
+.rc:hover .bg,.rc.vis .bg{transform:scale(1.08)}
+.rc:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0) 25%,rgba(5,25,14,.92))}
+.rc>*:not(.bg){position:relative;z-index:2}
+.rc .kind{align-self:flex-start;background:var(--sun);color:var(--deep);font:800 .68rem Inter;letter-spacing:.12em;text-transform:uppercase;padding:5px 10px;border-radius:6px;margin-bottom:auto}
+.rc .kind.x{background:var(--river);color:#fff}
+.rc h3{font-size:1.45rem;margin:10px 0 4px}
+.rc p{font-size:.9rem;opacity:.92}
+.rc .go{margin-top:12px;align-self:flex-start;background:#fff;color:var(--deep);border-radius:10px;padding:9px 14px;font:800 .8rem Inter}
+.rc .credit{position:absolute;top:14px;right:14px;z-index:3;color:#fff;font-size:.62rem;background:rgba(0,0,0,.45);padding:3px 7px;border-radius:5px}
+
+/* Niveles */
+.levels{display:grid;gap:12px;margin-top:22px}
+@media(min-width:760px){.levels{grid-template-columns:repeat(3,1fr)}}
+.lv{border-radius:20px;padding:22px;color:#fff;position:relative;overflow:hidden}
+.lv b{font:400 3.4rem "Archivo Black";opacity:.25;position:absolute;right:14px;top:4px}
+.lv h3{font-size:1.4rem;margin-bottom:6px}
+.l1{background:linear-gradient(135deg,#3c9a3a,#7cc44a)}.l2{background:linear-gradient(135deg,#1fa3a8,#1d6f8c)}.l3{background:linear-gradient(135deg,#0f2a1c,#2f5f3a)}
+
+/* Arma tu plan */
+.plan{background:#fff;border-radius:24px;padding:22px;box-shadow:0 12px 34px rgba(15,42,28,.1);margin-top:20px}
+.plan label{display:block;font:800 .78rem Inter;letter-spacing:.06em;text-transform:uppercase;color:var(--mut);margin:14px 0 6px}
+.plan select,.plan input[type=text],.plan input[type=date],.plan input[type=number]{width:100%;padding:14px;border-radius:12px;border:2px solid #dfe8da;font:600 1rem Inter;background:#f8fbf5;color:var(--ink)}
+.plan select:focus,.plan input:focus{outline:none;border-color:var(--leaf)}
+.seg{display:flex;gap:8px;flex-wrap:wrap}
+.seg button{flex:1;min-width:90px;border:2px solid #dfe8da;background:#f8fbf5;border-radius:12px;padding:12px;font:800 .85rem Inter;cursor:pointer;color:var(--ink)}
+.seg button.on{border-color:var(--leaf);background:var(--leaf);color:#fff}
+.tog{display:flex;align-items:center;gap:10px;margin-top:14px;font-weight:700}
+.tog input{width:22px;height:22px;accent-color:var(--leaf)}
+.preview{background:#e9f6e2;border-left:5px solid #25d366;border-radius:12px;padding:14px;margin:18px 0;font-size:.9rem;white-space:pre-wrap}
+.plan .btn{width:100%}
+
+/* Galería */
+.gal{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:20px}
+.gal figure{position:relative;border-radius:18px;overflow:hidden;aspect-ratio:4/3}
+.gal figure:first-child{grid-column:span 2;aspect-ratio:16/9}
+.gal img{width:100%;height:100%;object-fit:cover;transition:transform 5s}
+.gal figure:hover img{transform:scale(1.1)}
+.gal figcaption{position:absolute;left:10px;bottom:10px;background:rgba(0,0,0,.55);color:#fff;font:700 .75rem Inter;padding:5px 9px;border-radius:7px}
+
+/* Videos */
+.vid{background:var(--deep);color:#fff}
+.vid .lead{color:#c9dcc9}
+.tt{background:#fff;border-radius:20px;overflow:hidden;margin-top:20px;min-height:200px}
+.social{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:16px}
+.social a{text-align:center;text-decoration:none;border-radius:14px;padding:14px;font:800 .9rem Inter}
+.ig{background:linear-gradient(45deg,#f58529,#dd2a7b,#8134af);color:#fff}
+.tk{background:#000;color:#fff;border:1px solid #444}
+
+/* Pilares */
+.pil{display:grid;gap:12px;margin-top:20px}
+@media(min-width:760px){.pil{grid-template-columns:repeat(3,1fr)}}
+.pc{background:#fff;border-radius:20px;padding:22px;border-top:6px solid var(--leaf);box-shadow:0 8px 22px rgba(15,42,28,.07)}
+.pc:nth-child(2){border-color:var(--river)}.pc:nth-child(3){border-color:var(--sun)}
+.pc h3{font-size:1.25rem;margin-bottom:6px}
+.pc p{color:var(--mut);font-size:.93rem}
+.extra{display:grid;gap:12px;margin-top:12px}
+@media(min-width:760px){.extra{grid-template-columns:1fr 1fr}}
+.ex{border-radius:20px;padding:22px;background:var(--lime);color:var(--deep)}
+.ex:nth-child(2){background:var(--sun)}
+.ex h3{font-size:1.3rem;margin-bottom:6px}
+
+/* Qué llevar */
+.chk{display:grid;gap:8px;margin-top:18px}
+@media(min-width:760px){.chk{grid-template-columns:1fr 1fr}}
+.ci{display:flex;align-items:center;gap:12px;background:#fff;border-radius:14px;padding:14px;cursor:pointer;font-weight:600;border:2px solid transparent;transition:.2s}
+.ci .bx{flex:none;width:26px;height:26px;border-radius:8px;border:2px solid var(--leaf);display:grid;place-items:center;font:800 .9rem Inter;color:#fff}
+.ci.ok{border-color:var(--leaf);background:#eef8e8;text-decoration:line-through;color:var(--mut)}
+.ci.ok .bx{background:var(--leaf)}
+.bar{height:12px;background:#dfe8da;border-radius:99px;overflow:hidden;margin-top:14px}
+.bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--leaf),var(--lime));transition:width .4s}
+
+/* Opiniones */
+.rv{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;padding:6px 0 12px;margin-top:18px;scrollbar-width:none}
+.rv::-webkit-scrollbar{display:none}
+.rq{flex:0 0 82%;max-width:340px;scroll-snap-align:start;background:#fff;border-radius:20px;padding:20px;box-shadow:0 8px 22px rgba(15,42,28,.08)}
+.rq b{display:block;font:400 2.2rem "Archivo Black";color:var(--leaf)}
+.rq h3{font-size:1.1rem;margin:4px 0 6px}
+.rq p{color:var(--mut);font-size:.92rem}
+
+/* Pie */
+footer{background:#081a10;color:#b9ccb9;padding:42px 0 110px;font-size:.88rem}
+footer h3{color:#fff;font-size:1.3rem;margin-bottom:8px}
+footer a{color:var(--lime);font-weight:700}
+.made{margin-top:22px;padding-top:18px;border-top:1px solid #21402c}
+
+/* Botón flotante */
+.fab{position:fixed;z-index:70;left:14px;right:14px;bottom:14px;display:flex;gap:8px}
+.fab .btn{flex:1;padding:14px}
+.fab .btn.sh{flex:0 0 auto;background:#fff;color:var(--deep);box-shadow:0 8px 20px rgba(0,0,0,.2)}
+@media(min-width:760px){.fab{left:auto;width:420px}}
+
+.toast{position:fixed;left:50%;top:76px;transform:translateX(-50%) translateY(-20px);background:var(--deep);color:#fff;padding:10px 16px;border-radius:12px;font-weight:700;opacity:0;transition:.3s;z-index:90;pointer-events:none}
+.toast.on{opacity:1;transform:translateX(-50%)}
+.modal{position:fixed;inset:0;z-index:80;background:rgba(0,0,0,.6);display:none;align-items:flex-end;justify-content:center}
+.modal.on{display:flex}
+.sheet{background:#fff;border-radius:24px 24px 0 0;width:100%;max-width:620px;max-height:88vh;overflow:auto;animation:up .35s ease}
+@keyframes up{from{transform:translateY(60px);opacity:0}}
+.sheet .ph{height:220px;background-size:cover;background-position:center;position:relative}
+.sheet .ph button{position:absolute;right:12px;top:12px;border:0;background:rgba(0,0,0,.55);color:#fff;border-radius:10px;padding:8px 12px;font:800 .8rem Inter;cursor:pointer}
+.sheet .bd{padding:20px 20px 28px}
+.sheet h3{font-size:1.6rem;margin:6px 0 8px}
+.sheet ul{margin:12px 0 18px 18px;color:var(--mut)}
+.sheet li{margin:4px 0}
+</style>
+</head>
+<body>
+
+<header class="top" id="top">
+  <a class="brand" href="#inicio"><img src="img/logo.png" alt="ECO Caminantes"></a>
+  <div class="tb">
+    <button class="chip" id="lang">ENGLISH</button>
+    <button class="chip" id="install" hidden data-i="install">INSTALAR</button>
+  </div>
+</header>
+
+<section class="hero" id="inicio">
+  <div class="slide" style="background-image:url(img/cascada-selva.jpg)"></div>
+  <div class="slide" style="background-image:url(img/charco-esmeralda.jpg)"></div>
+  <div class="slide" style="background-image:url(img/canon-guape.jpg)"></div>
+  <div class="dots" id="dots"><i></i><i></i><i></i></div>
+  <div class="wrap hin">
+    <span class="tag" data-i="tag">Agencia de ecoturismo · Cali</span>
+    <h1 data-i="h1">Vive la <span>naturaleza</span> del Valle</h1>
+    <p data-i="hp">Ríos, cascadas y montaña. Pasadías y expediciones que salen desde Cali, con guías locales, alimentación y transporte organizado.</p>
+    <div class="row">
+      <a class="btn wa" href="#plan" data-i="cta1">Armar mi plan</a>
+      <a class="btn ghost" href="#rutas" data-i="cta2">Ver rutas</a>
+    </div>
+  </div>
+</section>
+
+<div class="ribbon"><div id="rib"></div></div>
+
+<section>
+  <div class="wrap">
+    <span class="kick" data-i="k1">Ellos ya caminaron</span>
+    <h2 data-i="h2a">Una comunidad que no para de crecer</h2>
+    <div class="stats">
+      <div class="st"><b data-n="1000000" data-p="+">0</b><span data-i="s1">viajeros han vivido la experiencia</span></div>
+      <div class="st"><b data-n="259000">0</b><span data-i="s2">seguidores en Instagram</span></div>
+      <div class="st"><b data-n="3732">0</b><span data-i="s3">publicaciones de sus salidas</span></div>
+      <div class="st"><b data-n="80" data-s="%">0</b><span data-i="s4">de sus experiencias son en el Valle del Cauca</span></div>
+    </div>
+    <div class="next">
+      <span class="kick" style="color:var(--lime)" data-i="k2">Próxima salida desde Cali</span>
+      <h3 id="nextDate">Este fin de semana</h3>
+      <p data-i="np">Hay salidas todos los fines de semana. Separa tu cupo antes de que se llene el bus.</p>
+      <div class="cd" id="cd"></div>
+      <a class="btn wa" style="margin-top:14px" href="#plan" data-i="cta3">Separar mi cupo</a>
+    </div>
+  </div>
+</section>
+
+<section id="rutas" style="padding-top:20px">
+  <div class="wrap">
+    <span class="kick" data-i="k3">Rutas</span>
+    <h2 data-i="h2b">Escoge tu próxima aventura</h2>
+    <p class="lead" data-i="lr">Toca una ruta para ver qué incluye y pedir fechas por WhatsApp.</p>
+    <div class="filters" id="filters">
+      <button class="f on" data-f="all" data-i="fa">Todas</button>
+      <button class="f" data-f="pasadia" data-i="fp">Pasadías</button>
+      <button class="f" data-f="expedicion" data-i="fe">Expediciones</button>
+      <button class="f" data-f="agua" data-i="fw">Ríos y cascadas</button>
+    </div>
+    <div class="routes" id="routes"></div>
+  </div>
+</section>
+
+<section style="padding-top:10px">
+  <div class="wrap">
+    <span class="kick" data-i="k4">Para todos</span>
+    <h2 data-i="h2c">Hay un nivel para ti</h2>
+    <p class="lead" data-i="ll">No necesitas ser deportista. Tienen experiencias de nivel bajo, medio y alto.</p>
+    <div class="levels">
+      <div class="lv l1"><b>01</b><h3 data-i="lv1">Nivel bajo</h3><p data-i="lv1p">Para quien no hace actividad física. Caminos suaves, charcos y mucho disfrute.</p></div>
+      <div class="lv l2"><b>02</b><h3 data-i="lv2">Nivel medio</h3><p data-i="lv2p">Caminatas más largas, subidas y cruces de río. Para quien camina de vez en cuando.</p></div>
+      <div class="lv l3"><b>03</b><h3 data-i="lv3">Nivel alto</h3><p data-i="lv3p">Montaña, cañones y expediciones de varios días. Para los que quieren reto.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="plan">
+  <div class="wrap">
+    <span class="kick" data-i="k5">Reserva en 1 minuto</span>
+    <h2 data-i="h2d">Arma tu plan</h2>
+    <p class="lead" data-i="lp">Llena esto y te abrimos WhatsApp con el mensaje listo para ECO Caminantes.</p>
+    <div class="plan">
+      <label data-i="pr">Ruta</label>
+      <select id="pRoute"></select>
+      <label data-i="pn">Tu nombre</label>
+      <input type="text" id="pName" data-ph="phn" placeholder="Escribe tu nombre">
+      <label data-i="pd">Fecha que te gustaría</label>
+      <input type="date" id="pDate">
+      <label data-i="pp">¿Cuántas personas?</label>
+      <input type="number" id="pPeople" min="1" max="60" value="2">
+      <label data-i="pl">Tu nivel</label>
+      <div class="seg" id="pLevel">
+        <button data-v="bajo" class="on" data-i="sb">Bajo</button>
+        <button data-v="medio" data-i="sm">Medio</button>
+        <button data-v="alto" data-i="sa">Alto</button>
+      </div>
+      <label class="tog"><input type="checkbox" id="pPet"> <span data-i="pet">Voy con mi mascota (pet friendly)</span></label>
+      <div class="preview" id="pPrev"></div>
+      <a class="btn wa" id="pSend" target="_blank" rel="noopener" data-i="send">Enviar por WhatsApp</a>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:10px">
+  <div class="wrap">
+    <span class="kick" data-i="k6">Fotos reales</span>
+    <h2 data-i="h2e">Así se vive una salida</h2>
+    <div class="gal">
+      <figure><img src="img/cascada-selva.jpg" alt="Río entre la selva" loading="lazy"><figcaption data-i="g1">Ríos de agua cristalina entre la selva</figcaption></figure>
+      <figure><img src="img/charco-esmeralda.jpg" alt="Charco verde esmeralda" loading="lazy"><figcaption data-i="g2">Charcos color esmeralda</figcaption></figure>
+      <figure><img src="img/canon-guape.jpg" alt="Cañón del río Guape" loading="lazy"><figcaption>Cañón del Río Guape · Uribe, Meta</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<section class="vid">
+  <div class="wrap">
+    <span class="kick" style="color:var(--lime)" data-i="k7">En video</span>
+    <h2 data-i="h2f">Mira sus últimas salidas</h2>
+    <p class="lead" data-i="lv">Los videos se cargan directo de su TikTok, así siempre ves lo más nuevo.</p>
+    <div class="tt">
+      <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@ecocaminantes" data-unique-id="ecocaminantes" data-embed-type="creator" style="max-width:780px;min-width:288px;margin:0 auto"><section><a target="_blank" href="https://www.tiktok.com/@ecocaminantes?refer=creator_embed">@ecocaminantes</a></section></blockquote>
+    </div>
+    <div class="social">
+      <a class="ig" href="https://www.instagram.com/ecocaminantes/" target="_blank" rel="noopener">Instagram</a>
+      <a class="tk" href="https://www.tiktok.com/@ecocaminantes" target="_blank" rel="noopener">TikTok</a>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <span class="kick" data-i="k8">Turismo que deja huella buena</span>
+    <h2 data-i="h2g">Caminar cuidando</h2>
+    <div class="pil">
+      <div class="pc"><h3 data-i="p1">Social</h3><p data-i="p1p">Trabajan con comunidades y guías locales, y con madres cabeza de hogar en su equipo.</p></div>
+      <div class="pc"><h3 data-i="p2">Ambiental</h3><p data-i="p2p">Enseñan a cuidar el entorno y hacen jornadas de limpieza y campañas de conciencia ambiental.</p></div>
+      <div class="pc"><h3 data-i="p3">Económico</h3><p data-i="p3p">Cada salida deja ingresos en los pueblos y veredas que visitan.</p></div>
+    </div>
+    <div class="extra">
+      <div class="ex"><h3 data-i="e1">Caminatas pet friendly</h3><p data-i="e1p">Hay recorridos para ir con tu mascota. Márcalo en tu plan.</p></div>
+      <div class="ex"><h3 data-i="e2">Rutas a la medida</h3><p data-i="e2p">Empresas, colegios, cumpleaños o grupos de amigos: pide tu salida privada.</p></div>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:10px">
+  <div class="wrap">
+    <span class="kick" data-i="k9">Lista de chequeo</span>
+    <h2 data-i="h2h">¿Qué llevar?</h2>
+    <p class="lead" data-i="lc">Ve marcando mientras empacas. Se queda guardado en tu celular.</p>
+    <div class="bar"><i id="bar"></i></div>
+    <div class="chk" id="chk"></div>
+  </div>
+</section>
+
+<section style="padding-top:10px">
+  <div class="wrap">
+    <span class="kick" data-i="k10">Lo que dicen los viajeros</span>
+    <h2 data-i="h2i">4,9 de 5 en reseñas</h2>
+    <p class="lead" data-i="lrv">Más de 250 opiniones, la mayoría en Google. Esto es lo que más destacan:</p>
+    <div class="rv" id="rv"></div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <h3>ECO Caminantes</h3>
+    <p data-i="ft">Agencia de ecoturismo. Experiencias de naturaleza desde Cali, Valle del Cauca.</p>
+    <p style="margin-top:8px">WhatsApp: <a href="https://wa.me/573232486462" target="_blank" rel="noopener">+57 323 248 6462</a></p>
+    <p>Instagram: <a href="https://www.instagram.com/ecocaminantes/" target="_blank" rel="noopener">@ecocaminantes</a></p>
+    <div class="made">
+      <p data-i="made">App hecha por <b style="color:#fff">Vibras Positivas HM</b> · Apps para negocios que quieren crecer.</p>
+      <p>Harold Marín · <a href="https://wa.me/573117700431?text=Hola%20Harold%2C%20vi%20la%20app%20de%20ECO%20Caminantes%20y%20quiero%20una%20para%20mi%20negocio" target="_blank" rel="noopener">311 770 0431</a></p>
+      <p style="margin-top:6px;opacity:.7" id="upd"></p>
+    </div>
+  </div>
+</footer>
+
+<div class="fab">
+  <a class="btn wa" href="#plan" data-i="fab">Reservar por WhatsApp</a>
+  <button class="btn sh" id="share" data-i="share">Compartir</button>
+</div>
+
+<div class="modal" id="modal"><div class="sheet" id="sheet"></div></div>
+<div class="toast" id="toast"></div>
+
+<script>
+const WA='573232486462';
+const P={a:'img/cascada-selva.jpg',b:'img/charco-esmeralda.jpg',c:'img/canon-guape.jpg',d:'img/expedicion-dic.jpg'};
+const ROUTES=[
+ {id:'7charcos',t:['pasadia','agua'],img:P.b,es:{n:'Ruta 7 Charcos · Anchicayá',k:'Pasadía',d:'Siete charcos en el cañón del río Anchicayá, vía a Buenaventura. Salidas todos los fines de semana.',inc:['Salida y regreso a Cali el mismo día','Guía local','Alimentación local','Chaleco salvavidas cuando se necesita']},en:{n:'7 Pools Route · Anchicayá',k:'Day trip',d:'Seven natural pools in the Anchicayá river canyon, on the road to Buenaventura. Every weekend.',inc:['Same-day round trip from Cali','Local guide','Local meals','Life vests when needed']}},
+ {id:'danubio',t:['pasadia','agua'],img:P.a,es:{n:'Danubio · Oasis de la Sirena',k:'Pasadía',d:'Cascada y pozos de agua cristalina en El Danubio, Dagua, entre el bosque del Pacífico.',inc:['Transporte desde Cali','Guía local','Alimentación local','Fotos del recorrido']},en:{n:'Danubio · Mermaid Oasis',k:'Day trip',d:'Waterfall and crystal-clear pools in El Danubio, Dagua, inside the Pacific forest.',inc:['Transport from Cali','Local guide','Local meals','Trip photos']}},
+ {id:'aguaclarita',t:['pasadia','agua'],img:P.b,es:{n:'Ruta Agua Clarita',k:'Pasadía',d:'Un río tan transparente que ves el fondo. Uno de los destinos favoritos del Valle del Cauca.',inc:['Transporte desde Cali','Guía local','Alimentación local']},en:{n:'Agua Clarita Route',k:'Day trip',d:'A river so clear you can see the bottom. One of the favorite spots in Valle del Cauca.',inc:['Transport from Cali','Local guide','Local meals']}},
+ {id:'angostura',t:['pasadia','agua'],img:P.a,es:{n:'Cañón de la Angostura',k:'Pasadía',d:'Caminata entre paredes de roca y agua. Pregunta el nivel y las próximas fechas.',inc:['Transporte desde Cali','Guía local','Alimentación local']},en:{n:'La Angostura Canyon',k:'Day trip',d:'A hike between rock walls and water. Ask for the level and next dates.',inc:['Transport from Cali','Local guide','Local meals']}},
+ {id:'mensajeros',t:['pasadia'],img:P.b,es:{n:'Mensajeros del Sol',k:'Pasadía',d:'Una de las rutas que más recomiendan sus viajeros en las reseñas.',inc:['Transporte desde Cali','Guía local','Alimentación local']},en:{n:'Messengers of the Sun',k:'Day trip',d:'One of the routes travelers recommend most in their reviews.',inc:['Transport from Cali','Local guide','Local meals']}},
+ {id:'ballenas',t:['expedicion','agua'],img:P.b,es:{n:'Ballenas en Juanchaco · Bahía Málaga',k:'Expedición',d:'Avistamiento de ballenas jorobadas en el Pacífico vallecaucano. Pregunta por la temporada y los cupos.',inc:['Transporte organizado','Guía','Alimentación local','Chaleco salvavidas']},en:{n:'Whales in Juanchaco · Bahía Málaga',k:'Expedition',d:'Humpback whale watching on the Pacific coast. Ask about the season and spots.',inc:['Organized transport','Guide','Local meals','Life vest']}},
+ {id:'guape',t:['expedicion','agua'],img:P.c,es:{n:'Cañón del Río Guape · Uribe, Meta',k:'Expedición',d:'Paredes de roca doradas talladas por el río. Una expedición fuera del Valle para los que quieren más.',inc:['Transporte organizado','Guía','Alimentación','Fotos profesionales']},en:{n:'Guape River Canyon · Uribe, Meta',k:'Expedition',d:'Golden rock walls carved by the river. An expedition beyond the Valle for those who want more.',inc:['Organized transport','Guide','Meals','Pro photos']}},
+ {id:'guajira',t:['expedicion'],img:P.c,es:{n:'Expedición La Guajira',k:'Expedición',d:'Desierto, mar y cultura wayuu. Escribe para conocer las fechas de la próxima salida.',inc:['Transporte organizado','Guía','Alimentación','Fotos del viaje']},en:{n:'La Guajira Expedition',k:'Expedition',d:'Desert, sea and Wayuu culture. Message them for the next departure dates.',inc:['Organized transport','Guide','Meals','Trip photos']}},
+ {id:'diciembre',t:['expedicion'],img:P.d,es:{n:'Expedición de diciembre · 11 al 20 dic 2026',k:'Expedición',d:'Su emocionante expedición de fin de año, del 11 al 20 de diciembre de 2026. Cupos limitados.',inc:['10 días de aventura','Guía','Transporte organizado','Pide el itinerario completo']},en:{n:'December Expedition · Dec 11–20, 2026',k:'Expedition',d:'Their big year-end expedition, December 11–20, 2026. Limited spots.',inc:['10 days of adventure','Guide','Organized transport','Ask for the full itinerary']}},
+ {id:'medida',t:['pasadia'],img:P.a,es:{n:'Ruta a tu medida',k:'Privada',d:'Para empresas, colegios, familias y grupos. Tú pones la fecha y ellos arman la ruta.',inc:['Ruta según tu grupo','Guía local','Alimentación y transporte']},en:{n:'Custom route',k:'Private',d:'For companies, schools, families and groups. You choose the date, they plan the route.',inc:['Route for your group','Local guide','Meals and transport']}}
+];
+const CHK={es:['Ropa cómoda que seque rápido','Zapatos con buen agarre que se puedan mojar','Vestido de baño','Cambio de ropa y toalla','Bloqueador biodegradable','Repelente','Agua para hidratarte','Documento de identidad','Bolsa para traer tu basura de vuelta','Algo de efectivo'],en:['Quick-dry comfy clothes','Grippy shoes that can get wet','Swimsuit','Change of clothes and towel','Biodegradable sunscreen','Insect repellent','Water','ID document','A bag to bring your trash back','Some cash']};
+const REV={es:[['01','Puntuales y organizados','Cumplen los horarios y el itinerario.'],['02','Guías que te cuidan','Atentos y amables; varios viajeros los nombran uno por uno.'],['03','Seguridad','Chaleco salvavidas cuando el río lo pide.'],['04','Buena comida','La alimentación local es de lo más elogiado.'],['05','Energía bonita','Un grupo de trabajo con muy buena vibra.']],en:[['01','On time and organized','They keep to schedules and itineraries.'],['02','Caring guides','Friendly and attentive; travelers mention them by name.'],['03','Safety first','Life vests when the river calls for it.'],['04','Great food','Local meals are among the most praised.'],['05','Good vibes','A team with great energy.']]};
+const T={en:{install:'INSTALL',tag:'Ecotourism agency · Cali',h1:'Live the <span>nature</span> of Valle',hp:'Rivers, waterfalls and mountains. Day trips and expeditions leaving from Cali, with local guides, meals and organized transport.',cta1:'Build my plan',cta2:'See routes',k1:'They already hiked',h2a:'A community that keeps growing',s1:'travelers have lived the experience',s2:'Instagram followers',s3:'posts from their trips',s4:'of their experiences are in Valle del Cauca',k2:'Next departure from Cali',np:'Departures every weekend. Book your spot before the bus fills up.',cta3:'Book my spot',k3:'Routes',h2b:'Pick your next adventure',lr:'Tap a route to see what\'s included and ask for dates on WhatsApp.',fa:'All',fp:'Day trips',fe:'Expeditions',fw:'Rivers & waterfalls',k4:'For everyone',h2c:'There\'s a level for you',ll:'You don\'t need to be an athlete. They offer low, medium and high level experiences.',lv1:'Low level',lv1p:'For people who don\'t exercise. Easy paths, natural pools and lots of fun.',lv2:'Medium level',lv2p:'Longer hikes, climbs and river crossings. For occasional walkers.',lv3:'High level',lv3p:'Mountains, canyons and multi-day expeditions. For those who want a challenge.',k5:'Book in 1 minute',h2d:'Build your plan',lp:'Fill this in and WhatsApp opens with the message ready for ECO Caminantes.',pr:'Route',pn:'Your name',phn:'Type your name',pd:'Preferred date',pp:'How many people?',pl:'Your level',sb:'Low',sm:'Medium',sa:'High',pet:'Bringing my pet (pet friendly)',send:'Send on WhatsApp',k6:'Real photos',h2e:'This is what a trip feels like',g1:'Crystal-clear rivers in the jungle',g2:'Emerald natural pools',k7:'On video',h2f:'Watch their latest trips',lv:'Videos load straight from their TikTok, so you always see the newest.',k8:'Tourism that leaves a good mark',h2g:'Hiking with care',p1:'Social',p1p:'They work with local communities and guides, including single mothers on their team.',p2:'Environmental',p2p:'They teach how to care for nature and run clean-ups and awareness campaigns.',p3:'Economic',p3p:'Every trip brings income to the towns and villages they visit.',e1:'Pet friendly hikes',e1p:'Some routes welcome your pet. Check it in your plan.',e2:'Custom routes',e2p:'Companies, schools, birthdays or friends: ask for your private trip.',k9:'Checklist',h2h:'What to bring?',lc:'Tick things off as you pack. It stays saved on your phone.',k10:'What travelers say',h2i:'4.9 out of 5 in reviews',lrv:'Over 250 reviews, mostly on Google. This is what they highlight:',ft:'Ecotourism agency. Nature experiences from Cali, Valle del Cauca.',made:'App made by <b style="color:#fff">Vibras Positivas HM</b> · Apps for businesses that want to grow.',fab:'Book on WhatsApp',share:'Share'}};
+let lang='es';try{lang=localStorage.getItem('eco_lang')||'es'}catch(e){}
+const ES={};document.querySelectorAll('[data-i]').forEach(el=>ES[el.dataset.i]=el.innerHTML);
+document.querySelectorAll('[data-ph]').forEach(el=>ES[el.dataset.ph]=el.placeholder);
+const tr=k=>(lang==='en'&&T.en[k])||ES[k]||k;
+const $=s=>document.querySelector(s);
+function toast(m){const t=$('#toast');t.textContent=m;t.classList.add('on');setTimeout(()=>t.classList.remove('on'),2200)}
+
+function applyLang(){
+  document.documentElement.lang=lang;
+  document.querySelectorAll('[data-i]').forEach(el=>el.innerHTML=tr(el.dataset.i));
+  document.querySelectorAll('[data-ph]').forEach(el=>el.placeholder=tr(el.dataset.ph));
+  $('#lang').textContent=lang==='es'?'ENGLISH':'ESPAÑOL';
+  renderRoutes();renderSelect();renderChk();renderRev();ribbon();nextTrip();preview();
+}
+$('#lang').onclick=()=>{lang=lang==='es'?'en':'es';try{localStorage.setItem('eco_lang',lang)}catch(e){}applyLang()};
+
+/* Portada animada */
+const slides=[...document.querySelectorAll('.slide')],dots=[...document.querySelectorAll('#dots i')];let si=0;
+function show(i){slides.forEach((s,j)=>{s.classList.toggle('on',j===i)});dots.forEach((d,j)=>d.classList.toggle('on',j===i))}
+show(0);setInterval(()=>{si=(si+1)%slides.length;show(si)},6000);
+addEventListener('scroll',()=>$('#top').classList.toggle('solid',scrollY>60),{passive:true});
+
+function ribbon(){const w=lang==='es'?['Ríos','Cascadas','Montaña','Expediciones','Pasadías','Pet friendly','Salidas desde Cali']:['Rivers','Waterfalls','Mountains','Expeditions','Day trips','Pet friendly','Departures from Cali'];const s=w.map(x=>x+'<b>·</b>').join('');$('#rib').innerHTML=s+s+s+s}
+
+/* Cifras animadas */
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(!e.isIntersecting)return;const el=e.target;io.unobserve(el);
+  if(el.dataset.n){const n=+el.dataset.n,t0=performance.now();const f=t=>{const p=Math.min(1,(t-t0)/1800),v=Math.round(n*(1-Math.pow(1-p,3)));el.textContent=(el.dataset.p||'')+v.toLocaleString('es-CO')+(el.dataset.s||'');if(p<1)requestAnimationFrame(f)};requestAnimationFrame(f)}
+  else el.classList.add('vis')}),{threshold:.25});
+document.querySelectorAll('[data-n]').forEach(el=>io.observe(el));
+
+/* Hora real de Colombia */
+function bogNow(){const s=new Date().toLocaleString('en-US',{timeZone:'America/Bogota'});return new Date(s)}
+let cdT;
+function nextTrip(){
+  const now=bogNow();const exp=new Date(2026,11,11,5,0,0);
+  let target,label;
+  target=new Date(now);target.setHours(5,0,0,0);target.setDate(target.getDate()+(6-now.getDay()+7)%7);
+  if(target<=now)target.setDate(target.getDate()+7);
+  const loc=lang==='es'?'es-CO':'en-US';
+  label=target.toLocaleDateString(loc,{weekday:'long',day:'numeric',month:'long'});
+  $('#nextDate').textContent=label.charAt(0).toUpperCase()+label.slice(1);
+  clearInterval(cdT);const L=lang==='es'?['días','horas','min','seg']:['days','hours','min','sec'];
+  const tick=()=>{let d=Math.max(0,target-bogNow())/1000;const v=[Math.floor(d/86400),Math.floor(d%86400/3600),Math.floor(d%3600/60),Math.floor(d%60)];$('#cd').innerHTML=v.map((x,i)=>`<div><b>${String(x).padStart(2,'0')}</b><small>${L[i]}</small></div>`).join('')};
+  tick();cdT=setInterval(tick,1000);
+  const dd=Math.ceil((exp-now)/86400000);
+  $('#upd').textContent=(lang==='es'?'Hora de Colombia: ':'Colombia time: ')+now.toLocaleString(loc,{dateStyle:'medium',timeStyle:'short'})+(dd>0?(lang==='es'?` · Faltan ${dd} días para la expedición de diciembre`:` · ${dd} days to the December expedition`):'');
+}
+
+/* Rutas */
+let filt='all';
+function renderRoutes(){
+  $('#routes').innerHTML=ROUTES.filter(r=>filt==='all'||r.t.includes(filt)).map(r=>{const x=r[lang];return `<article class="rc" data-id="${r.id}"><div class="bg" style="background-image:url(${r.img})"></div><span class="credit">${lang==='es'?'Foto':'Photo'}: @ecocaminantes</span><span class="kind ${r.t.includes('expedicion')?'x':''}">${x.k}</span><h3>${x.n}</h3><p>${x.d}</p><span class="go">${lang==='es'?'Ver detalles':'See details'}</span></article>`}).join('');
+  document.querySelectorAll('.rc').forEach(c=>{io.observe(c);c.onclick=()=>openRoute(c.dataset.id)});
+}
+document.querySelectorAll('.f').forEach(b=>b.onclick=()=>{document.querySelectorAll('.f').forEach(x=>x.classList.remove('on'));b.classList.add('on');filt=b.dataset.f;renderRoutes()});
+function openRoute(id){const r=ROUTES.find(x=>x.id===id),x=r[lang];
+  $('#sheet').innerHTML=`<div class="ph" style="background-image:url(${r.img})"><button id="cl">${lang==='es'?'Cerrar':'Close'}</button></div><div class="bd"><span class="kick">${x.k}</span><h3>${x.n}</h3><p>${x.d}</p><ul>${x.inc.map(i=>`<li>${i}</li>`).join('')}</ul><a class="btn wa" style="width:100%" target="_blank" rel="noopener" href="https://wa.me/${WA}?text=${encodeURIComponent((lang==='es'?'Hola ECO Caminantes, quiero información de la ruta: ':'Hi ECO Caminantes, I would like info about the route: ')+x.n+(lang==='es'?'. ¿Qué fechas y cupos tienen?':'. What dates and spots are available?'))}">${lang==='es'?'Pedir fechas por WhatsApp':'Ask dates on WhatsApp'}</a><button class="btn" style="width:100%;margin-top:8px;background:#eef3ea;color:var(--deep)" id="toPlan">${lang==='es'?'Usar en Arma tu plan':'Use in Build your plan'}</button></div>`;
+  $('#modal').classList.add('on');$('#cl').onclick=closeM;$('#toPlan').onclick=()=>{$('#pRoute').value=id;preview();closeM();location.hash='plan'}}
+function closeM(){$('#modal').classList.remove('on')}
+$('#modal').onclick=e=>{if(e.target.id==='modal')closeM()};
+
+/* Arma tu plan */
+let lvl='bajo';
+function renderSelect(){const v=$('#pRoute').value;$('#pRoute').innerHTML=ROUTES.map(r=>`<option value="${r.id}">${r[lang].n}</option>`).join('');if(v)$('#pRoute').value=v}
+document.querySelectorAll('#pLevel button').forEach(b=>b.onclick=()=>{document.querySelectorAll('#pLevel button').forEach(x=>x.classList.remove('on'));b.classList.add('on');lvl=b.dataset.v;preview()});
+['pRoute','pName','pDate','pPeople','pPet'].forEach(id=>{$('#'+id).addEventListener('input',preview);$('#'+id).addEventListener('change',preview)});
+function preview(){
+  const r=ROUTES.find(x=>x.id===$('#pRoute').value)||ROUTES[0],n=$('#pName').value.trim(),d=$('#pDate').value,p=$('#pPeople').value||1,pet=$('#pPet').checked;
+  const LV={bajo:['bajo','low'],medio:['medio','medium'],alto:['alto','high']}[lvl];
+  let fd='';if(d){const [y,m,dd]=d.split('-');fd=new Date(y,m-1,dd).toLocaleDateString(lang==='es'?'es-CO':'en-US',{weekday:'long',day:'numeric',month:'long'})}
+  const msg=lang==='es'
+   ?`Hola ECO Caminantes${n?', soy '+n:''}.\nQuiero reservar:\nRuta: ${r.es.n}\nFecha: ${fd||'la próxima disponible'}\nPersonas: ${p}\nNivel: ${LV[0]}${pet?'\nVoy con mi mascota':''}\n¿Me confirman disponibilidad y valor? Gracias.`
+   :`Hi ECO Caminantes${n?', this is '+n:''}.\nI'd like to book:\nRoute: ${r.en.n}\nDate: ${fd||'next available'}\nPeople: ${p}\nLevel: ${LV[1]}${pet?'\nBringing my pet':''}\nCould you confirm availability and price? Thanks.`;
+  $('#pPrev').textContent=msg;$('#pSend').href=`https://wa.me/${WA}?text=${encodeURIComponent(msg)}`;
+}
+(function(){const t=bogNow(),y=t.getFullYear(),m=String(t.getMonth()+1).padStart(2,'0'),d=String(t.getDate()).padStart(2,'0');$('#pDate').min=`${y}-${m}-${d}`})();
+
+/* Qué llevar */
+let done=[];try{done=JSON.parse(localStorage.getItem('eco_chk')||'[]')}catch(e){}
+function renderChk(){const L=CHK[lang];$('#chk').innerHTML=L.map((x,i)=>`<div class="ci ${done.includes(i)?'ok':''}" data-k="${i}"><span class="bx">${done.includes(i)?'✓':''}</span>${x}</div>`).join('');
+  $('#bar').style.width=(done.length/L.length*100)+'%';
+  document.querySelectorAll('.ci').forEach(c=>c.onclick=()=>{const k=+c.dataset.k;done=done.includes(k)?done.filter(x=>x!==k):[...done,k];try{localStorage.setItem('eco_chk',JSON.stringify(done))}catch(e){}renderChk();if(done.length===L.length)toast(lang==='es'?'Maleta lista. ¡A caminar!':'Bag ready. Let\'s hike!')})}
+function renderRev(){$('#rv').innerHTML=REV[lang].map(r=>`<div class="rq"><b>${r[0]}</b><h3>${r[1]}</h3><p>${r[2]}</p></div>`).join('')}
+
+/* Compartir */
+$('#share').onclick=async()=>{const d={title:'ECO Caminantes',text:lang==='es'?'Mira las rutas de ECO Caminantes y arma tu plan desde Cali':'Check out ECO Caminantes routes and plan your trip from Cali',url:location.href};
+  if(navigator.share){try{await navigator.share(d)}catch(e){}}else{try{await navigator.clipboard.writeText(d.url);toast(lang==='es'?'Enlace copiado':'Link copied')}catch(e){}}};
+
+/* Instalar */
+let dp;addEventListener('beforeinstallprompt',e=>{e.preventDefault();dp=e;$('#install').hidden=false});
+$('#install').onclick=async()=>{if(!dp)return;dp.prompt();await dp.userChoice;dp=null;$('#install').hidden=true};
+if('serviceWorker' in navigator)addEventListener('load',()=>navigator.serviceWorker.register('sw.js').catch(()=>{}));
+
+applyLang();
+setInterval(nextTrip,60000);
+</script>
+<script async src="https://www.tiktok.com/embed.js"></script>
+</body>
+</html>
